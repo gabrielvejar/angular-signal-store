@@ -1,3 +1,31 @@
+<div class="flex justify-end m-2">
+  <!-- Previous Button -->
+  <button
+    class="flex items-center justify-center px-3 h-8 text-sm font-medium text-gray-500 bg-white border border-gray-300 rounded-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
+    (click)="previousPage()"
+    [disabled]="
+      isPreviousButtonDisabled() || productsState.state().status === 'loading'
+    "
+    [class.cursor-not-allowed]="isPreviousButtonDisabled()"
+    [class.opacity-60]="isPreviousButtonDisabled()"
+  >
+    Previous
+  </button>
+
+  <!-- Next Button -->
+  <button
+    class="flex items-center justify-center px-3 h-8 ms-3 text-sm font-medium text-gray-500 bg-white border border-gray-300 rounded-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
+    (click)="nextPage()"
+    [disabled]="
+      isNextButtonDisabled() || productsState.state().status === 'loading'
+    "
+    [class.cursor-not-allowed]="isNextButtonDisabled()"
+    [class.opacity-60]="isNextButtonDisabled()"
+  >
+    Next
+  </button>
+</div>
+
 @if (productsState.state().status === "loading") {
   <div role="status" class="flex justify-center">
     <svg
@@ -21,7 +49,7 @@
 } @else {
   <div class="mx-auto max-w-screen-xl">
     <div class="grid grid-cols-[repeat(4,300px)] gap-4">
-      @for (product of productsState.state().products; track product) {
+      @for (product of getPageProducts(); track product) {
         <app-product-card [product]="product"></app-product-card>
       }
     </div>
