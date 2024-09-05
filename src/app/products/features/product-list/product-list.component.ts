@@ -13,19 +13,16 @@ import { MAX_PRODUCTS, PRODUCTS_LIMIT } from '../../products-consts';
 })
 export class ProductListComponent {
   productsState = inject(ProductsStateService);
+  getPage = () => this.productsState.state.page();
 
   getPageProducts() {
     return this.productsState
       .state()
-      .products.slice(PRODUCTS_LIMIT * (this.productsState.state().page - 1));
+      .products.slice(PRODUCTS_LIMIT * (this.getPage() - 1));
   }
 
   isPreviousButtonDisabled() {
-    console.log({
-      page: this.productsState.state().page,
-      if: this.productsState.state().page == 1,
-    });
-    return this.productsState.state().page == 1;
+    return this.getPage() == 1;
   }
 
   isNextButtonDisabled() {
@@ -33,10 +30,10 @@ export class ProductListComponent {
   }
 
   previousPage() {
-    this.productsState.changePage$.next(this.productsState.state().page - 1);
+    this.productsState.changePage$.next(this.getPage() - 1);
   }
 
   nextPage() {
-    this.productsState.changePage$.next(this.productsState.state().page + 1);
+    this.productsState.changePage$.next(this.getPage() + 1);
   }
 }
