@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import { BaseHttpService } from '../../shared/data-access/base-http-service';
+import { BaseHttpService } from '../../shared/data-access/base-http.service';
 import { Observable } from 'rxjs';
-import { Product } from '../../shared/interfaces/product';
+import { Product } from '../../shared/interfaces/product.interface';
 import { PRODUCTS_LIMIT } from '../products-consts';
 
 @Injectable({ providedIn: 'root' })

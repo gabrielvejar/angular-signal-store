@@ -2,6 +2,8 @@ import { Component, inject } from '@angular/core';
 import { ProductsStateService } from '../../data-access/products-state.service';
 import { ProductCardComponent } from '../../ui/product-card/product-card.component';
 import { MAX_PRODUCTS, PRODUCTS_LIMIT } from '../../products-consts';
+import { CartStateService } from '../../../shared/data-access/cart-state.service';
+import { Product } from '../../../shared/interfaces/product.interface';
 
 @Component({
   selector: 'app-product-list',
@@ -13,6 +15,8 @@ import { MAX_PRODUCTS, PRODUCTS_LIMIT } from '../../products-consts';
 })
 export default class ProductListComponent {
   productsState = inject(ProductsStateService);
+  cartState = inject(CartStateService).state;
+
   getPage = () => this.productsState.state.page();
 
   getPageProducts() {
@@ -35,5 +39,11 @@ export default class ProductListComponent {
 
   nextPage() {
     this.productsState.changePage$.next(this.getPage() + 1);
+  }
+
+  addToCart(product: Product) {
+    console.log('addToCart triggered');
+    console.log({ product });
+    this.cartState.add({ product, quantity: 1 });
   }
 }
