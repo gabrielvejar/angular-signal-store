@@ -1,5 +1,6 @@
 import { Component, effect, inject, input } from '@angular/core';
 import { ProductDetailStateService } from '../../data-access/product-detail-state.service';
+import { CurrencyPipe, TitleCasePipe } from '@angular/common';
 
 // params metodo 1
 // import { Component, inject } from '@angular/core';
@@ -8,7 +9,7 @@ import { ProductDetailStateService } from '../../data-access/product-detail-stat
 @Component({
   selector: 'app-product-detail',
   standalone: true,
-  imports: [],
+  imports: [TitleCasePipe, CurrencyPipe],
   templateUrl: './product-detail.component.html',
   styles: ``,
   providers: [ProductDetailStateService],
