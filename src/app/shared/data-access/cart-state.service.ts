@@ -35,6 +35,10 @@ export class CartStateService {
     actionSources: {
       add: (state: Signal<State>, action$: Observable<ProductItemCart>) =>
         action$.pipe(map((product) => this.add(state, product))),
+      remove: (state: Signal<State>, action$: Observable<number>) =>
+        action$.pipe(map((productId) => this.remove(state, productId))),
+      update: (state: Signal<State>, action$: Observable<ProductItemCart>) =>
+        action$.pipe(map((product) => this.update(state, product))),
     },
   });
 
@@ -49,6 +53,24 @@ export class CartStateService {
 
     isInCard.quantity++;
     return { products: [...state().products] };
+  }
+
+  private remove(state: Signal<State>, productId: number) {
+    return {
+      products: [...state().products.filter((p) => p.product.id !== productId)],
+    };
+  }
+
+  private update(state: Signal<State>, productItemCart: ProductItemCart) {
+    return {
+      products: [
+        ...state().products.map((p) => {
+          if (p.product.id === productItemCart.product.id)
+            return productItemCart;
+          return p;
+        }),
+      ],
+    };
   }
 
   constructor() {
