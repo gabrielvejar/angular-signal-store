@@ -11,7 +11,7 @@ import { MAX_PRODUCTS, PRODUCTS_LIMIT } from '../../products-consts';
   styles: ``,
   providers: [ProductsStateService],
 })
-export class ProductListComponent {
+export default class ProductListComponent {
   productsState = inject(ProductsStateService);
   getPage = () => this.productsState.state.page();
 
