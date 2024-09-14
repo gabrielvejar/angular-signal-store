@@ -126,11 +126,12 @@
           </div>
 
           <div class="mt-6 sm:gap-4 sm:items-center sm:flex sm:mt-8">
-            <a
+            <button
               href="#"
               title=""
               class="text-white mt-4 sm:mt-0 bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-primary-600 dark:hover:bg-primary-700 focus:outline-none dark:focus:ring-primary-800 flex items-center justify-center"
               role="button"
+              (click)="addToCart()"
             >
               <svg
                 class="w-5 h-5 -ms-2 me-2"
@@ -151,7 +152,7 @@
               </svg>
 
               Añadir al carrito
-            </a>
+            </button>
           </div>
 
           <hr class="my-6 md:my-8 border-gray-200 dark:border-gray-800" />
