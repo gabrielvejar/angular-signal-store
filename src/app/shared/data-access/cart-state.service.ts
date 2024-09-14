@@ -85,7 +85,6 @@ export class CartStateService {
   constructor() {
     effect(() => {
       if (this.state().loaded === true) {
-        console.log(this.state.products());
         this._storageService.saveProducts(this.state().products);
       }
     });

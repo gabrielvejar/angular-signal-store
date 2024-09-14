@@ -42,8 +42,6 @@ export default class ProductListComponent {
   }
 
   addToCart(product: Product) {
-    console.log('addToCart triggered');
-    console.log({ product });
     this.cartState.add({ product, quantity: 1 });
   }
 }
