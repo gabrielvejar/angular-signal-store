@@ -29,9 +29,16 @@
           <a
             routerLink="/cart"
             routerLinkActive="text-green-500"
-            class="block py-2 px-3 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:p-0 text-white md:hover:text-green-500 hover:text-white"
-            >Carrito</a
-          >
+            class="block py-2 px-3 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:p-0 text-white md:hover:text-green-500 hover:text-white relative"
+            >Carrito
+            @if (cartProductsQuantity() > 0) {
+              <span
+                class="inline-flex items-center justify-center w-6 h-6 ms-2 text-sm font-semibold text-white bg-green-600 rounded-full absolute"
+              >
+                {{ cartProductsQuantity() }}
+              </span>
+            }
+          </a>
         </li>
       </ul>
     </div>

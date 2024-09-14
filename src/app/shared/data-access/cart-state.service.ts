@@ -32,6 +32,15 @@ export class CartStateService {
     //     console.log(state.products());
     //   },
     // }),
+    selectors: (state) => ({
+      count: () =>
+        state().products.reduce((acc, product) => acc + product.quantity, 0),
+      price: () =>
+        state().products.reduce(
+          (acc, product) => acc + product.product.price * product.quantity,
+          0,
+        ),
+    }),
     actionSources: {
       add: (state: Signal<State>, action$: Observable<ProductItemCart>) =>
         action$.pipe(map((product) => this.add(state, product))),
